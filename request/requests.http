@@ -1,0 +1,19 @@
+### Получить первую страницу из 3 элементов
+GET http://localhost:8080/api/post?offset=0&limit=3
+Content-Type: application/json
+
+### Получить вторую страницу из 3 элементов с сортировкой
+GET http://localhost:8080/api/post/exampleSort?offset=1&limit=3&sort=createOn
+Content-Type: application/json
+
+### Получить вторую страницу из 3 элементов с сортировкой (enum)
+GET http://localhost:8080/api/post/exampleEnumSort?offset=1&limit=3&sort=ID_ASC
+Content-Type: application/json
+
+### Получить вторую страницу из 3 элементов JPQL
+GET http://localhost:8080/api/post/exampleJpql?offset=1&limit=3&title=Post
+Content-Type: application/json
+
+### Получить вторую страницу из 3 элементов SQL Native
+GET http://localhost:8080/api/post/exampleSqlNative?offset=1&limit=3&title=Post
+Content-Type: application/json
