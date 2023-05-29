@@ -1,15 +1,15 @@
 package dev.struchkov.example;
 
+import jakarta.validation.constraints.Min;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Slice;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import javax.validation.constraints.Min;
 
 @RestController
 @RequestMapping("api/post")
@@ -24,6 +24,14 @@ public class PostController {
             @RequestParam(value = "limit", defaultValue = "20") Integer limit
     ) {
         return repository.findAll(PageRequest.of(offset, limit));
+    }
+
+    @GetMapping("exampleSlice")
+    public Slice<Post> getAllSlice(
+            @RequestParam(value = "offset", defaultValue = "0") @Min(0) Integer offset,
+            @RequestParam(value = "limit", defaultValue = "20") Integer limit
+    ) {
+        return repository.findAllSlice(PageRequest.of(offset, limit));
     }
 
     @GetMapping("exampleSort")
